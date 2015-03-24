@@ -4,11 +4,10 @@ ds18B20::ds18B20(const char *fileName) {
     file = fopen(fileName, "r");
     if (file == NULL) {
         throw 0;
+    } else {
+        this->fileName = fileName;
+        fclose(file);
     }
-}
-
-ds18B20::~ds18B20() {
-    fclose(file);
 }
 
 double ds18B20::getTemperature() {
@@ -16,6 +15,11 @@ double ds18B20::getTemperature() {
 }
 
 int ds18B20::getTemperatureRaw() {
+
+    file = fopen(fileName, "r");
+    if (file == NULL) {
+        throw 0;
+    }
 
     int size = 75;
     char temp[6];
@@ -28,5 +32,8 @@ int ds18B20::getTemperatureRaw() {
     temp[2] = string[71];
     temp[3] = string[72];
     temp[4] = string[73];
+    
+    fclose(file);
+    
     return atoi(temp);
 }

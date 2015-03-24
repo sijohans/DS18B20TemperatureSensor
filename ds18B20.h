@@ -10,10 +10,9 @@
 class ds18B20 {
     private:
         FILE *file;
-        int temp;
+        const char *fileName;
     public:
         ds18B20(const char *fileName);
-        ~ds18B20();
         double getTemperature(void);
         int getTemperatureRaw(void);
 };
