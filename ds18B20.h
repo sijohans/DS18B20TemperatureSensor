@@ -3,7 +3,8 @@
 
 #include <exception>
 #include <stdio.h>
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <iostream> 
     
 
 class ds18B20 {
@@ -12,6 +13,7 @@ class ds18B20 {
         int temp;
     public:
         ds18B20(const char *fileName);
+        ~ds18B20();
         double getTemperature(void);
         int getTemperatureRaw(void);
 };

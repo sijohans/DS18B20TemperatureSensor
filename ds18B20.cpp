@@ -1,10 +1,14 @@
 #include "ds18B20.h"
 
 ds18B20::ds18B20(const char *fileName) {
-    file = fopen(fileName, "rb");
+    file = fopen(fileName, "r");
     if (file == NULL) {
-        throw std::exception();
+        throw 0;
     }
+}
+
+ds18B20::~ds18B20() {
+    fclose(file);
 }
 
 double ds18B20::getTemperature() {
@@ -25,4 +29,22 @@ int ds18B20::getTemperatureRaw() {
     temp[3] = string[72];
     temp[4] = string[73];
     return atoi(temp);
+}
+
+int main(int argc, char *argv[]) {
+    
+    if (argc < 2) {
+        perror("No path do sensor specified");
+        return 0;
+    }
+    
+    try {
+        ds18B20 s = ds18B20(argv[1]);
+        std::cout << s.getTemperature() << std::endl;
+        return 0;
+    } catch (std::exception e) {
+        perror("File not found");
+        return 0;
+    }
+    
 }
