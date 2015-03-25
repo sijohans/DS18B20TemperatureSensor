@@ -16,25 +16,24 @@ double ds18B20::getTemperature() {
 
 int ds18B20::getTemperatureRaw() {
 
-    size_t fileSize;
     file = fopen(fileName, "r");
     if (file == NULL) {
         throw 0;
     }
-    int size = 6;
-    
-   fseek(file, 0L, SEEK_END);
-   fileSize = ftell(file);
-   fseek(file, 0L, SEEK_SET);
-   
-   fseek(file, -size, SEEK_END);
 
+    int size = 75;
+    char temp[6];
     
-
-    char buff[size];
-    fread(buff, sizeof(char), size, file);
-    int temp;
-    sscanf(buff, "%d", &temp);
+    char string[size];
+    fread(string, size, 1, file);
+    
+    temp[0] = string[69];
+    temp[1] = string[70];
+    temp[2] = string[71];
+    temp[3] = string[72];
+    temp[4] = string[73];
+    
     fclose(file);
-    return temp;
+    
+    return atoi(temp);
 }
