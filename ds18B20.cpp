@@ -28,7 +28,7 @@ int ds18B20::getTemperatureRaw() {
     fseek(file, 69, SEEK_SET);
     fread(string, 5, 1, file);
 
-    sscanf(string, "%d", &i);
+    sscanf(string, "%d", &temp);
     fclose(file);
 
     return temp;
