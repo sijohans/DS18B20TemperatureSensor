@@ -1,6 +1,6 @@
-#include "ds18B20.h"
+#include "DS18B20TemperatureSensor.h"
 
-ds18B20::ds18B20(const char *fileName) {
+DS18B20TemperatureSensor::DS18B20TemperatureSensor(const char *fileName) {
     file = fopen(fileName, "r");
     if (file == NULL) {
         throw 0;
@@ -10,11 +10,11 @@ ds18B20::ds18B20(const char *fileName) {
     }
 }
 
-double ds18B20::getTemperature() {
+double DS18B20TemperatureSensor::getTemperature() {
     return (double) getTemperatureRaw()/1000;
 }
 
-int ds18B20::getTemperatureRaw() {
+int DS18B20TemperatureSensor::getTemperatureRaw() {
 
     char buff[5];
     int temp;

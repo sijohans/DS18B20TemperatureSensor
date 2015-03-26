@@ -1,5 +1,5 @@
-#ifndef DS18B20_H
-#define DS18B20_H
+#ifndef DS18B20TemperatureSensor_H
+#define DS18B20TemperatureSensor_H
 
 #include <exception>
 #include <stdio.h>
@@ -7,12 +7,12 @@
 #include <iostream> 
     
 
-class ds18B20 {
+class DS18B20TemperatureSensor {
     private:
         FILE *file;
         const char *fileName;
     public:
-        ds18B20(const char *fileName);
+        DS18B20TemperatureSensor(const char *fileName);
         double getTemperature(void);
         int getTemperatureRaw(void);
 };
